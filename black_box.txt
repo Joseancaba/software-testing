@@ -1,0 +1,15 @@
+Function that calculates the discount for a customer's purchase based on the total amount.
+The discount rules are as follows:
+If the total amount is less than 100, no discount is applied.
+If the total amount is between 100 and 500 (inclusive), a 10% discount is applied.
+If the total amount is greater than 500, a 26% discount is applied.
+
+Prueba 1 = El monto total es de 50 esperando que regrese un 0% de descuento.
+Prueba 2 = El monto total es de 99 esperando que regrese un 0% de descuento.
+Prueba 3 = El monto total es de 100 esperando que regrese un 10% de descuento.
+Prueba 4 = El monto total es de 250 esperando que regrese un 10% de descuento.
+Prueba 5 = El monto total es de 500 esperando que regrese un 10% de descuento.
+Prueba 7 = El monto total es de 501 esperando que regrese un 26% de descuento.
+Prueba 8 = El monto total es de 1000 esperando que regrese un 26% de descuento.
+
+
