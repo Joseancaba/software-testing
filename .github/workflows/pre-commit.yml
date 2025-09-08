@@ -1,3 +1,4 @@
+# .github/workflows/pre-commit.yml
 name: Pre-commit
 
 on:
@@ -11,4 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'   # <- IMPORTANTE
       - uses: pre-commit/action@v3.0.0
