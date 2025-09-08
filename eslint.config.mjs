@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import globals from 'globals';
 
 export default [
   js.configs.recommended,
@@ -6,10 +7,11 @@ export default [
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'script'
+      sourceType: 'script',
+      globals: globals.node, // habilita console, process, etc.
     },
     rules: {
-      // reglas adicionales si las quieres
-    }
-  }
+      // tus reglas aquí si quieres
+    },
+  },
 ];

@@ -4,14 +4,16 @@
   "description": "read",
   "main": "hello.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "eslint hello.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.35.0",
-    "eslint": "^9.35.0"
+    "eslint": "^9.35.0",
+    "globals": "^16.3.0"
   },
   "dependencies": {
     "acorn": "^8.15.0",
@@ -45,7 +47,6 @@
     "flat-cache": "^4.0.1",
     "flatted": "^3.3.3",
     "glob-parent": "^6.0.2",
-    "globals": "^14.0.0",
     "has-flag": "^4.0.0",
     "ignore": "^5.3.2",
     "import-fresh": "^3.3.1",
