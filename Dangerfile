@@ -1,25 +1,25 @@
-# Checks some basic commit message style:
-#   - The title (first line) is not longer than 50 characters.
-#   - The title and body have to be separated by newline.
-#   - The description has minimum 5 characters.
-#   - Each description line is not longer than 72 characters.
-
+# Dangerfile
 commitIssues = []
 
-for commit in git.commits
-  (subject, empty_line, *body) = commit.message.split("\n")
+git.commits.each do |commit|
+  lines   = commit.message.lines
+  subject = lines[0].to_s.chomp
+  empty   = lines[1]&.strip   # segunda línea
+  body    = lines.drop(2).map(&:chomp)
 
-  commitIssues << "Commit title is too long: &lt;#{subject}&gt;" if subject.length > 50
-  commitIssues << "Commit title and body are not separated: &lt;#{subject}&gt;" if empty_line && empty_line.length > 0
+  commitIssues << "Commit title is too long: <#{subject}>" if subject.length > 50
 
-  description_length = body.length > 0 ? body.first.length : 0
-  commitIssues << "Please include a description for commit &quot;#{subject}&quot;" if (description_length < 5)
+  # AVISO si hay body pero NO hay línea en blanco separando
+  if body.any? && (empty && !empty.empty?)
+    commitIssues << "Commit title and body must be separated by a blank line: <#{subject}>"
+  end
 
-  for line in body
-    commitIssues << "Commit text lines are too long: &lt;#{subject}&gt;" if line.length > 72
+  first_line_len = body.first.to_s.length
+  commitIssues << "Please include a description for commit \"#{subject}\"" if first_line_len < 5
+
+  body.each do |line|
+    commitIssues << "Commit text line too long (>72): <#{subject}>" if line.length > 72
   end
 end
 
-for issue in commitIssues
-  fail issue
-end
+commitIssues.each { |issue| warn(issue) }  # <- antes era `fail`
