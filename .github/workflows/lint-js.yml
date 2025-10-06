@@ -20,3 +20,4 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint . --ext .js
+
