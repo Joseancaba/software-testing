@@ -1,0 +1,170 @@
+Equivalence Partitioning
+
+1. Function that validates credit card numbers.
+   - Valid card numbers: Length between 13 and 16 digits, containing only numeric digits.
+
+Case 1: Que sean puros numeros y sea una cadena de 12 digitos
+Case 2: Que sean puros numeros y sea una cadena de 13 digitos
+Case 3: Que tenga letras y que sea de 13 digitos
+Case 4: Que tenga puros numeros y que sea de 16 digitos
+Case 5: Que tenga puros numeros y que sea de 17 digitos
+
+2. Function that validates dates.
+   - Valid years: Between 1900 and 2100.
+   - Valid months: Between 1 and 12.
+   - Valid days: Between 1 and 31.
+
+Case 1: year: 1899/ month:1/ days:1
+Case 2: year: 1900/ month:1/ days:1
+Case 3: year: 2100/ month:12/ days:31
+Case 4: year: 2101/ month:1/ days:1
+Case 5: year: 2100/ month:13/ days:1
+Case 6: year: 1900/ month:1/ days:32
+Case 7: year: 1900/ month:0/ days:1
+
+3. Function that checks the eligibility of a passenger to book a flight.
+   - Eligible ages: Between 18 and 65.
+   - Frequent flyers: True or False.
+
+Case 1: Passenger 17 y/o
+Case 2: Passenger 18 y/o
+Case 3: Passenger 65 y/o
+Case 4: Passenger 66 y/o
+
+4. Function that validates URLs.
+   - Valid URLs: Length less than or equal to 255, starting with "http://" or "https://".
+
+Case 1: Que empiece con "http://" y tenga 255 caracteres
+Case 2: Que empiece con "https://" y tenga 255 caracteres
+Case 3: Que empiece con "http:/" y tenga 255 caracteres
+Case 4: Que empiece con "http//" y tenga 255 caracteres
+Case 5: Que empiece con "http:" y tenga 255 caracteres
+Case 6: Que empiece con "https:/" y tenga 255 caracteres
+Case 7: Que empiece con "https//" y tenga 255 caracteres
+Case 8: Que empiece con "http://" y tenga 256 caracteres
+Case 9: Que empiece con "https://" y tenga 256 caracteres
+
+
+Boundary Value Analysis
+
+1. Function that calculates the eligibility of a person for a loan based on their income and credit score.
+   The eligibility rules are as follows:
+   - If the income is less than $30,000, the person is not eligible for a loan.
+   - If the income is between $30,000 and $60,000 (inclusive) and the credit score is above 700, the person is eligible for a standard loan.
+   - If the income is between $30,000 and $60,000 (inclusive) and the credit score is below or equal to 700, the person is eligible for a secured loan.
+   - If the income is greater than $60,000 and the credit score is above 750, the person is eligible for a premium loan.
+   - If the income is greater than $60,000 and the credit score is between 700 and 750 (inclusive), the person is eligible for a standard loan.
+
+Case 1: Income = 29,999 = No loan
+Case 2: Income = 30,000 y score 701 elegible para estandar
+Case 3: Income = 59,999 y score 701 elegible para estandar
+Case 4: Income = 60,000 y score 700 elegible secured loan
+Case 5: Income = 60,001 y score 750 elegible estandar loan
+Case 6: Income = 60,001 y score 751 elegible premium loan
+Case 7: Income = 30,000 y score 700 no loan
+
+
+
+2. Function that determines the category of a product in an e-commerce system based on its price.
+   The product categories and pricing rules are as follows:
+   - Category A: Products priced between $10 and $50 (inclusive).
+   - Category B: Products priced between $51 and $100 (inclusive).
+   - Category C: Products priced between $101 and $200 (inclusive).
+   - Category D: Products priced above $200.
+
+Case 1: 9 = error
+Case 2: 10 = Category A
+Case 3: 50 = Category A
+Case 4: 51 = Category B
+Case 5: 100 = Category B
+Case 6: 101 = Category C
+Case 7: 200 = Category C
+Case 8: 201 = Category D
+
+
+3. Function that calculates the cost of shipping for packages based on their weight and dimensions.
+   The shipping cost rules are as follows:
+   - If the weight of the package is less than or equal to 1 kg and the dimensions (length, width, and height) are each less than or equal to 10 cm, the cost is $5.
+   - If the weight is between 1 and 5 kg (inclusive) and the dimensions are each between 11 and 30 cm (inclusive), the cost is $10.
+   - If the weight is greater than 5 kg or any of the dimensions is greater than 30 cm, the cost is $20.
+
+
+Case 1: 1kg with 10 cm = 5
+Case 2: 1kg w 11 cm = 10
+Case 3: 5kg w 30 cm = 10
+Case 4: 0.1kg w 30 cm = 20
+Case 5: 5.01kg w 31 cm = 20
+
+
+Decision Table
+
+1. Create the decision table for a system that provides weather advisories based on temperature and humidity.
+   The rules are:
+   - Weather recommendation "High temperature and humidity. Stay hydrated." for temperature > 30 and humidity > 70.
+   - Weather recommendation "Low temperature. Don't forget your jacket!" for temperature < 0 and any humidity.
+   - No weather recommendation for any other temperature and humidity combination.
+
+  Temperature   |  Humidity    |   Response
+      31        |     71       |     high
+      30        |     71       |     No-Recomm
+      31        |     70       |     No-Recomm
+      -1        |     0        |     Low
+      -1        |     100      |     Low
+      0         |     50       |     No-Recomm
+      25        |     80       |     No-Recomm
+
+
+2. Create the decision table for a system that authenticates users based on their username and password.
+   The rules are:
+   - Returns "Admin" for username "admin" and password "admin123".
+   - Returns "User" for any other username with at least 5 characters and password with at least 8 characters.
+   - Returns "Invalid" if the username or password lenghts are not met.
+
+   username     |  PASSWORD    |    Response
+      admin     |     admin123 |     admin
+      admin     |     xxxxx123 |     invalid
+      user1     |     password1|     user
+      usr       |     password1|    invalid
+      usuario   |     pass     |     invalid
+      abcde     |     abcdefgh |     user
+      abcd      |     abcdefgh |     invalid
+      usuario   |     1234567  |    invalid
+
+
+
+State Transition
+
+1. Draw the state transition diagram for a simple vending machine that dispenses drinks.
+   - It has two states: "Ready" and "Dispensing".
+   - Goes from Ready to Dispensing when inserting a coin and asks you to select the drink.
+   - After selecting the drink, thanks you and goes from Dispensing to Ready.
+
+
+                        Insert coin
+   |        | ----------------------------------->|             |
+   | READY  |                                     | DISPENSING  |
+   |        | <-----------------------------------|             |
+                       Select drink / Thank you
+
+
+
+2. Draw the state transition diagram for an elevator system.
+   - The states are "Idle", "Moving Up" and "Moving Down".
+   - The elevator can only move up or down if the state is in "Idle" state.
+   - The elevator can only stop if the state is either "Moving Down" or "Moving Up"
+
+                 +---------+
+                 |  Idle   |
+                 +---------+
+                  ^       ^
+     Stop         |       |         Stop
+     +------------+       +-------------+
+     |                                  |
++------------+                   +--------------+
+| Moving Up  |                   | Moving Down  |
++------------+                   +--------------+
+     ^                                  ^
+     | Move Up                          | Move Down
+     |                                  |
+     +----------------------------------+
+                   desde Idle
